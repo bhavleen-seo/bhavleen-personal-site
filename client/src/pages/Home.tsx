@@ -22,6 +22,7 @@ import {
   X,
   ArrowRight,
   ExternalLink,
+  CheckCircle2,
 } from "lucide-react";
 import ContactForm from "@/components/ContactForm";
 
@@ -388,84 +389,37 @@ export default function Home() {
         <div className="container">
           <div className="grid lg:grid-cols-2 gap-16 xl:gap-24 items-start">
 
-            {/* Left: text */}
-            <div>
-              <AnimatedItem i={0}><div className="section-label">About</div></AnimatedItem>
-              <AnimatedItem i={1}>
-                <h2 className="font-['Playfair_Display'] text-4xl lg:text-5xl font-bold mb-2 leading-tight" style={{ color: "#1A1A1A" }}>
-                  Who I Am
-                </h2>
-                <span className="amber-rule" />
-              </AnimatedItem>
-              <AnimatedItem i={2}>
-                <p className="font-['Source_Serif_4'] text-lg leading-relaxed mb-5" style={{ color: "#3A3A3A" }}>
-                  I'm Bhavleen Singh, an SEO specialist, digital marketing professional, and founder of{" "}
-                  <a href="https://khalismarketing.com.au" target="_blank" rel="noopener noreferrer" className="font-semibold underline underline-offset-2" style={{ color: "#C9873A", textDecorationColor: "#C9873A" }}>
-                    Khalis Marketing
-                  </a>
-                  , a boutique SEO consultancy based in Melbourne, Australia.
-                </p>
-              </AnimatedItem>
-              <AnimatedItem i={3}>
-                <p className="font-['Source_Serif_4'] text-lg leading-relaxed mb-5" style={{ color: "#3A3A3A" }}>
-                  My career in digital marketing spans over a decade, starting as a freelance content writer before transitioning fully into SEO in 2020. Since then, I've built and executed search strategies for businesses across the US and Australia, working in some of the most competitive niches in digital marketing.
-                </p>
-              </AnimatedItem>
-              <AnimatedItem i={4}>
-                <p className="font-['Source_Serif_4'] text-lg leading-relaxed mb-10" style={{ color: "#3A3A3A" }}>
-                  I started Khalis Marketing because I believe clients deserve better than what most agencies offer: transparency, modern strategies, and someone who actually does the work they're paid for.
-                </p>
-              </AnimatedItem>
-
-              {/* Credentials */}
-              <AnimatedItem i={5}>
-                <div className="space-y-0" style={{ borderTop: "1px solid #D9D4CC" }}>
-                  {[
-                    { title: "Master of Marketing", sub: "Victoria University, Melbourne · 2023" },
-                    { title: "Technical SEO Certification", sub: "Moz — Industry-recognised accreditation" },
-                    { title: "10+ Years in Digital Marketing", sub: "US & Australian market experience" },
-                  ].map((c) => (
-                    <div key={c.title} className="flex items-start gap-4 py-4" style={{ borderBottom: "1px solid #D9D4CC" }}>
-                      <div className="w-1.5 h-1.5 rounded-full mt-2.5 shrink-0" style={{ background: "#C9873A" }} />
-                      <div>
-                        <p className="font-['DM_Mono'] text-sm font-medium" style={{ color: "#1A1A1A" }}>{c.title}</p>
-                        <p className="font-['Source_Serif_4'] text-sm mt-0.5" style={{ color: "#6B6B6B" }}>{c.sub}</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </AnimatedItem>
-            </div>
-
-            {/* Right: photo + stats */}
+            {/* Left: photo + overlapping 2×2 stats grid */}
             <AnimatedSection>
-              <div className="relative lg:sticky lg:top-28">
+              <div className="relative" style={{ paddingBottom: "5rem" }}>
                 <img
                   src={PHOTO_URL}
                   alt="Bhavleen Singh"
-                  className="w-full object-cover object-top"
-                  style={{ maxWidth: 440, height: 520, filter: "grayscale(8%)" }}
+                  className="block object-cover object-top"
+                  style={{ width: "100%", maxWidth: 360, height: 460 }}
                 />
-                {/* Stats row below photo */}
-                <div className="grid grid-cols-4 mt-0" style={{ borderTop: "2px solid #C9873A" }}>
+                {/* 2×2 stats grid — floats to bottom-right, overlapping the photo */}
+                <div
+                  className="absolute grid grid-cols-2 shadow-2xl"
+                  style={{
+                    bottom: 0,
+                    left: "calc(50% - 40px)",
+                    width: 260,
+                    gap: "1px",
+                    background: "#C9873A",  /* gap colour = amber */
+                  }}
+                >
                   {[
                     { n: 10, s: "+", l: "Years" },
-                    { n: 100, s: "%+", l: "Traffic" },
+                    { n: 100, s: "%+", l: "Traffic Growth" },
                     { n: 2, s: "", l: "Markets" },
                     { n: 6, s: "+", l: "Industries" },
-                  ].map((s, i) => (
-                    <div
-                      key={s.l}
-                      className="px-4 py-4"
-                      style={{
-                        background: "#1A1A1A",
-                        borderRight: i < 3 ? "1px solid rgba(248,245,240,0.08)" : "none",
-                      }}
-                    >
-                      <p className="font-['Playfair_Display'] text-xl font-bold" style={{ color: "#C9873A" }}>
+                  ].map((s) => (
+                    <div key={s.l} className="px-6 py-4" style={{ background: "#1B3A2D" }}>
+                      <p className="font-['Playfair_Display'] text-2xl font-bold" style={{ color: "#C9873A" }}>
                         <Counter to={s.n} suffix={s.s} />
                       </p>
-                      <p className="font-['DM_Mono'] text-xs uppercase tracking-widest mt-0.5" style={{ color: "rgba(248,245,240,0.45)" }}>
+                      <p className="font-['DM_Mono'] text-xs uppercase tracking-wider mt-0.5" style={{ color: "rgba(248,245,240,0.6)" }}>
                         {s.l}
                       </p>
                     </div>
@@ -473,6 +427,59 @@ export default function Home() {
                 </div>
               </div>
             </AnimatedSection>
+
+            {/* Right: text + credentials */}
+            <div>
+              <AnimatedItem i={0}><div className="section-label">About Me</div></AnimatedItem>
+              <AnimatedItem i={1}>
+                <h2 className="font-['Playfair_Display'] text-4xl lg:text-5xl font-bold mb-6 leading-tight" style={{ color: "#1A1A1A" }}>
+                  Who I Am
+                </h2>
+              </AnimatedItem>
+              <AnimatedItem i={2}>
+                <p className="font-['Source_Serif_4'] text-base leading-relaxed mb-5" style={{ color: "#3A3A3A" }}>
+                  I'm Bhavleen Singh, an SEO specialist, digital marketing professional, and founder of{" "}
+                  <a href="https://khalismarketing.com.au" target="_blank" rel="noopener noreferrer" className="font-semibold underline underline-offset-2" style={{ color: "#1A1A1A" }}>
+                    Khalis Marketing
+                  </a>
+                  , a boutique SEO consultancy based in Melbourne, Australia.
+                </p>
+              </AnimatedItem>
+              <AnimatedItem i={3}>
+                <p className="font-['Source_Serif_4'] text-base leading-relaxed mb-5" style={{ color: "#3A3A3A" }}>
+                  My career in digital marketing spans over a decade, starting as a freelance content writer before transitioning fully into SEO in 2020. Since then, I've built and executed search strategies for businesses across the US and Australia, working in some of the most competitive niches in digital marketing.
+                </p>
+              </AnimatedItem>
+              <AnimatedItem i={4}>
+                <p className="font-['Source_Serif_4'] text-base leading-relaxed mb-8" style={{ color: "#3A3A3A" }}>
+                  I started Khalis Marketing because I believe clients deserve better than what most agencies offer: transparency, modern strategies, and someone who actually does the work they're paid for.
+                </p>
+              </AnimatedItem>
+
+              {/* Credential cards — sage bg, amber left border, checkmark */}
+              <AnimatedItem i={5}>
+                <div className="space-y-3">
+                  {[
+                    { title: "Master of Marketing", sub: "Victoria University, Melbourne (2023)" },
+                    { title: "Technical SEO Certification", sub: "Moz — Industry-recognised accreditation" },
+                    { title: "10+ Years in Digital Marketing", sub: "US & Australian market experience" },
+                  ].map((c) => (
+                    <div
+                      key={c.title}
+                      className="flex items-start gap-3 p-4"
+                      style={{ background: "#E8EDE6", borderLeft: "3px solid #C9873A" }}
+                    >
+                      <CheckCircle2 size={18} className="mt-0.5 shrink-0" style={{ color: "#C9873A" }} />
+                      <div>
+                        <p className="font-['DM_Mono'] text-sm font-semibold" style={{ color: "#1A1A1A" }}>{c.title}</p>
+                        <p className="font-['Source_Serif_4'] text-xs mt-0.5" style={{ color: "#6B6B6B" }}>{c.sub}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </AnimatedItem>
+            </div>
+
           </div>
         </div>
       </section>
@@ -498,15 +505,18 @@ export default function Home() {
             </AnimatedItem>
           </div>
 
-          {/* Service list — editorial style with rules */}
-          <div className="grid md:grid-cols-2 gap-0" style={{ borderTop: "1px solid #D9D4CC" }}>
+          {/* Service list — perfect grid with border-left on container + border-right/bottom on each cell */}
+          <div
+            className="grid md:grid-cols-2"
+            style={{ borderTop: "1px solid #D9D4CC", borderLeft: "1px solid #D9D4CC" }}
+          >
             {SERVICES.map((s, i) => (
-              <AnimatedItem key={s.title} i={i * 0.15}>
+              <AnimatedItem key={s.title} i={i * 0.15} className="h-full">
                 <div
-                  className="flex gap-5 py-8 px-1"
+                  className="flex gap-5 py-8 px-6 h-full"
                   style={{
+                    borderRight: "1px solid #D9D4CC",
                     borderBottom: "1px solid #D9D4CC",
-                    borderRight: i % 2 === 0 ? "1px solid #D9D4CC" : "none",
                   }}
                 >
                   <div className="shrink-0 mt-1">
@@ -730,25 +740,45 @@ export default function Home() {
       <section className="py-24 lg:py-32 relative overflow-hidden" style={{ background: "#F0EDE8" }}>
         <SectionNum num="06" />
         <div className="container">
-          <div className="max-w-3xl">
-            <AnimatedItem i={0}><div className="section-label">A Bit About Me</div></AnimatedItem>
-            <AnimatedItem i={1}>
-              <span className="amber-rule" />
-              <p className="font-['Source_Serif_4'] text-xl leading-relaxed mb-6" style={{ color: "#3A3A3A" }}>
-                I grew up curious about how things work, and the internet turned out to be the most interesting puzzle I've found. SEO sits at the intersection of technology, psychology, and communication — which is probably why it's held my attention for over a decade.
-              </p>
-            </AnimatedItem>
-            <AnimatedItem i={2}>
-              <p className="font-['Source_Serif_4'] text-xl leading-relaxed mb-6" style={{ color: "#3A3A3A" }}>
-                I'm a first-generation immigrant who built a career in a competitive field through persistence and a genuine love for the craft. That background shapes how I approach problems: methodically, without shortcuts, and with a lot of patience for the long game.
-              </p>
-            </AnimatedItem>
-            <AnimatedItem i={3}>
-              <p className="font-['Source_Serif_4'] text-xl leading-relaxed" style={{ color: "#3A3A3A" }}>
-                Away from the screen, I'm into gaming, following cricket, and exploring regional Victoria whenever I get the chance.{" "}
-                <strong style={{ color: "#1A1A1A" }}>Bright, Victoria</strong> is a standing recommendation. If you haven't been, it's worth the drive.
-              </p>
-            </AnimatedItem>
+          <div className="grid lg:grid-cols-2 gap-16 xl:gap-24 items-start">
+            {/* Left: text */}
+            <div className="max-w-xl">
+              <AnimatedItem i={0}><div className="section-label">A Bit About Me</div></AnimatedItem>
+              <AnimatedItem i={1}>
+                <span className="amber-rule" />
+                <p className="font-['Source_Serif_4'] text-xl leading-relaxed mb-6" style={{ color: "#3A3A3A" }}>
+                  I grew up curious about how things work, and the internet turned out to be the most interesting puzzle I've found. SEO sits at the intersection of technology, psychology, and communication — which is probably why it's held my attention for over a decade.
+                </p>
+              </AnimatedItem>
+              <AnimatedItem i={2}>
+                <p className="font-['Source_Serif_4'] text-xl leading-relaxed mb-6" style={{ color: "#3A3A3A" }}>
+                  I'm a first-generation immigrant who built a career in a competitive field through persistence and a genuine love for the craft. That background shapes how I approach problems: methodically, without shortcuts, and with a lot of patience for the long game.
+                </p>
+              </AnimatedItem>
+              <AnimatedItem i={3}>
+                <p className="font-['Source_Serif_4'] text-xl leading-relaxed" style={{ color: "#3A3A3A" }}>
+                  Away from the screen, I'm into gaming, following cricket, and exploring regional Victoria whenever I get the chance.{" "}
+                  <strong style={{ color: "#1A1A1A" }}>Bright, Victoria</strong> is a standing recommendation. If you haven't been, it's worth the drive.
+                </p>
+              </AnimatedItem>
+            </div>
+            {/* Right: photo with caption */}
+            <AnimatedSection>
+              <figure>
+                <img
+                  src="/mount-hotham.webp"
+                  alt="At Mount Hotham near Bright, Victoria"
+                  className="w-full object-cover"
+                  style={{ maxHeight: 480, filter: "grayscale(5%)" }}
+                />
+                <figcaption
+                  className="font-['DM_Mono'] text-xs uppercase tracking-widest mt-3"
+                  style={{ color: "#6B6B6B", borderLeft: "2px solid #C9873A", paddingLeft: "0.75rem" }}
+                >
+                  At Mount Hotham near Bright
+                </figcaption>
+              </figure>
+            </AnimatedSection>
           </div>
         </div>
       </section>
