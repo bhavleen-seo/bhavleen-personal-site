@@ -246,7 +246,7 @@ export default function Home() {
       </header>
 
       {/* ── HERO ── */}
-      <section id="hero" className="min-h-screen flex items-center" style={{ background: "#F8F5F0" }}>
+      <section id="hero" className="relative min-h-screen flex items-center" style={{ background: "#F8F5F0" }}>
         <div className="container pt-28 pb-20">
           <div className="grid lg:grid-cols-[3fr_2fr] gap-16 xl:gap-24 items-center">
 
@@ -391,22 +391,19 @@ export default function Home() {
 
             {/* Left: photo + overlapping 2×2 stats grid */}
             <AnimatedSection>
-              <div className="relative" style={{ paddingBottom: "5rem" }}>
+              <div className="relative lg:pb-20">
                 <img
                   src={PHOTO_URL}
                   alt="Bhavleen Singh"
-                  className="block object-cover object-top"
-                  style={{ width: "100%", maxWidth: 360, height: 460 }}
+                  className="block object-cover object-top w-full max-w-[360px]"
+                  style={{ height: 460 }}
                 />
-                {/* 2×2 stats grid — floats to bottom-right, overlapping the photo */}
+                {/* 2×2 stats grid — overlaps photo on lg+, stacks below on mobile */}
                 <div
-                  className="absolute grid grid-cols-2 shadow-2xl"
+                  className="grid grid-cols-2 shadow-2xl lg:absolute lg:bottom-0 lg:left-[calc(50%-40px)] lg:w-[260px] mt-4 lg:mt-0"
                   style={{
-                    bottom: 0,
-                    left: "calc(50% - 40px)",
-                    width: 260,
                     gap: "1px",
-                    background: "#C9873A",  /* gap colour = amber */
+                    background: "#C9873A",
                   }}
                 >
                   {[
@@ -415,7 +412,7 @@ export default function Home() {
                     { n: 2, s: "", l: "Markets" },
                     { n: 6, s: "+", l: "Industries" },
                   ].map((s) => (
-                    <div key={s.l} className="px-6 py-4" style={{ background: "#1B3A2D" }}>
+                    <div key={s.l} className="px-6 py-4" style={{ background: "#1A1A1A" }}>
                       <p className="font-['Playfair_Display'] text-2xl font-bold" style={{ color: "#C9873A" }}>
                         <Counter to={s.n} suffix={s.s} />
                       </p>
@@ -467,7 +464,7 @@ export default function Home() {
                     <div
                       key={c.title}
                       className="flex items-start gap-3 p-4"
-                      style={{ background: "#E8EDE6", borderLeft: "3px solid #C9873A" }}
+                      style={{ background: "#F0EDE8", borderLeft: "3px solid #C9873A" }}
                     >
                       <CheckCircle2 size={18} className="mt-0.5 shrink-0" style={{ color: "#C9873A" }} />
                       <div>
@@ -638,8 +635,7 @@ export default function Home() {
             {RESULTS.map((r, i) => (
               <AnimatedItem key={r.label} i={i * 0.2}>
                 <div
-                  className="py-10 px-8"
-                  style={{ borderRight: i < 2 ? "1px solid #D9D4CC" : "none" }}
+                  className={`py-10 px-8 ${i < 2 ? "md:border-r md:border-[#D9D4CC]" : ""}`}
                 >
                   <p className="font-['Playfair_Display'] font-bold mb-1" style={{ fontSize: "clamp(3rem, 6vw, 5rem)", color: "#C9873A", lineHeight: 1 }}>
                     <Counter to={r.stat} suffix={r.suffix} />
@@ -861,7 +857,7 @@ export default function Home() {
               Khalis Marketing
             </a>
           </p>
-          <div className="flex gap-6">
+          <div className="hidden sm:flex gap-6">
             {NAV_LINKS.map((l) => (
               <a key={l.label} href={l.href} className="font-['DM_Mono'] text-xs hover:text-white transition-colors" style={{ color: "rgba(248,245,240,0.35)", letterSpacing: "0.08em" }}>
                 {l.label}
