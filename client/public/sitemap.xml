@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+
+  <!-- Homepage -->
+  <url>
+    <loc>https://bhavleensingh.com/</loc>
+    <lastmod>2026-03-22</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- Blog listing page -->
+  <url>
+    <loc>https://bhavleensingh.com/blog</loc>
+    <lastmod>2026-03-22</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Blog post: What Is E-E-A-T and Why It Matters -->
+  <url>
+    <loc>https://bhavleensingh.com/blog/what-is-eeeat-and-why-it-matters</loc>
+    <lastmod>2026-02-18</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Blog post: Technical SEO Audit Checklist 2026 -->
+  <url>
+    <loc>https://bhavleensingh.com/blog/technical-seo-audit-checklist-2026</loc>
+    <lastmod>2026-01-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Blog post: Local SEO Google Business Profile Guide -->
+  <url>
+    <loc>https://bhavleensingh.com/blog/local-seo-google-business-profile-guide</loc>
+    <lastmod>2026-01-10</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+</urlset>
